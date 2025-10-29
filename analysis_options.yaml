@@ -1,0 +1,7 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # You can enable/disable specific lint rules here if you like
+    avoid_print: false
+    prefer_const_constructors: true

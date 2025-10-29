@@ -1,0 +1,129 @@
+{
+  "project_info": {
+    "project_number": "800797352751",
+    "project_id": "nutro-c99d7",
+    "storage_bucket": "nutro-c99d7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800797352751:android:6fc507b42985465141f7da",
+        "android_client_info": {
+          "package_name": "com.company.nutroandriod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800797352751-4i6r4pilhd28h9o4ptj0idhljdccb69l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.nutroandriod",
+            "certificate_hash": "b47a70439fb8ba85fb2f302431b0bee7d6ef010b"
+          }
+        },
+        {
+          "client_id": "800797352751-04j7foolpmm1juuahqtqp4u7c6pklmap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkGAHAmyEzYN_gcA7KcIDO10Ac6k4r9ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800797352751-04j7foolpmm1juuahqtqp4u7c6pklmap.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "800797352751-4dvaqap7fdm1rlot2c733lid7ac3vipf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.nutroapple",
+                "app_store_id": "12345678"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800797352751:android:36d2970b80a2d87e41f7da",
+        "android_client_info": {
+          "package_name": "com.example.new1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800797352751-04j7foolpmm1juuahqtqp4u7c6pklmap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkGAHAmyEzYN_gcA7KcIDO10Ac6k4r9ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800797352751-04j7foolpmm1juuahqtqp4u7c6pklmap.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "800797352751-4dvaqap7fdm1rlot2c733lid7ac3vipf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.nutroapple",
+                "app_store_id": "12345678"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800797352751:android:cd10658fcb96b96941f7da",
+        "android_client_info": {
+          "package_name": "com.example.nutro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800797352751-04j7foolpmm1juuahqtqp4u7c6pklmap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkGAHAmyEzYN_gcA7KcIDO10Ac6k4r9ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800797352751-04j7foolpmm1juuahqtqp4u7c6pklmap.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "800797352751-4dvaqap7fdm1rlot2c733lid7ac3vipf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.nutroapple",
+                "app_store_id": "12345678"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
