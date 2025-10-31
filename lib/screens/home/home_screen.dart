@@ -18,6 +18,22 @@ class _HomeScreenState extends State<HomeScreen> {
   XFile? _photo;
 
   User? get _user => FirebaseAuth.instance.currentUser;
+  
+  // Common allergies list
+  static const List<String> _allAllergies = [
+    'Milk',
+    'Eggs',
+    'Peanuts',
+    'Tree nuts',
+    'Fish',
+    'Crustacean shellfish',
+    'Wheat',
+    'Soy',
+    'Sesame',
+  ];
+
+  final Set<String> _selectedAllergies = {}; // stored locally for now
+  String? _phone; // editable phone field (local)
 
   Future<void> _logout(BuildContext context) async {
     try {
@@ -52,6 +68,56 @@ class _HomeScreenState extends State<HomeScreen> {
         SnackBar(content: Text('Could not open camera: $e')),
       );
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // initialize phone from Firebase user if available
+    _phone = _user?.phoneNumber;
+  }
+
+  Future<void> _editPhone() async {
+    final controller = TextEditingController(text: _phone ?? '');
+    final result = await showDialog<String?>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Edit phone number'),
+        content: TextField(
+          controller: controller,
+          keyboardType: TextInputType.phone,
+          decoration: const InputDecoration(hintText: '+1234567890'),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(context).pop(null), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.of(context).pop(controller.text.trim()), child: const Text('Save')),
+        ],
+      ),
+    );
+
+    if (result != null) {
+      if (!mounted) return;
+      setState(() {
+        _phone = result.isEmpty ? null : result;
+      });
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Phone updated locally')));
+    }
+  }
+
+  void _toggleAllergy(String allergy) {
+    setState(() {
+      if (_selectedAllergies.contains(allergy)) {
+        _selectedAllergies.remove(allergy);
+      } else {
+        _selectedAllergies.add(allergy);
+      }
+    });
+  }
+
+  void _saveAllergies() {
+    // TODO: persist to server or Firestore. Currently local only.
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Saved allergies: ${_selectedAllergies.join(', ')}')));
   }
 
   @override
@@ -99,7 +165,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 6),
-                  Text(email, style: TextStyle(color: Colors.grey[700])),
+                  // Email and Phone row
+                  Column(
+                    children: [
+                      Text(email, style: TextStyle(color: Colors.grey[700])),
+                      const SizedBox(height: 6),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.phone, size: 16, color: Colors.grey[700]),
+                          const SizedBox(width: 6),
+                          Text(_phone ?? 'No phone number', style: TextStyle(color: Colors.grey[700])),
+                          const SizedBox(width: 8),
+                          IconButton(
+                            icon: const Icon(Icons.edit, size: 18),
+                            tooltip: 'Edit phone',
+                            onPressed: _editPhone,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 18),
 
                   ElevatedButton.icon(
@@ -108,6 +194,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     label: const Text('Open Camera'),
                   ),
                   const SizedBox(height: 12),
+
+                  // Allergies selection
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Common allergies', style: Theme.of(context).textTheme.titleMedium),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 6,
+                    children: _allAllergies.map((a) {
+                      final selected = _selectedAllergies.contains(a);
+                      return FilterChip(
+                        label: Text(a),
+                        selected: selected,
+                        onSelected: (_) => _toggleAllergy(a),
+                        selectedColor: Theme.of(context).colorScheme.primary.withAlpha(31),
+                      );
+                    }).toList(),
+                  ),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: ElevatedButton.icon(
+                      onPressed: _saveAllergies,
+                      icon: const Icon(Icons.save),
+                      label: const Text('Save Allergies'),
+                    ),
+                  ),
 
                   if (_photo != null) ...[
                     const Text('Captured photo:'),
