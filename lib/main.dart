@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (_) => const LoginPage(),
         '/signup': (_) => const SignupPage(),
-        '/home': (_) => HomePage(),
+  '/home': (_) => const HomePage(),
       },
     );
   }
@@ -55,7 +55,7 @@ class AuthGate extends StatelessWidget {
         }
 
         if (snapshot.hasData && snapshot.data != null) {
-          return HomePage();
+          return const HomePage();
         } else {
           return const LoginPage();
         }
