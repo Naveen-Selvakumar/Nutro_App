@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'login_page.dart';
-import 'home_page.dart';
-import 'signup_page.dart';
+import 'screens/auth/login_screen.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/auth/signup_screen.dart';
 
 // If you used flutterfire configure, uncomment and import generated file:
 import 'firebase_options.dart';
@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
       ),
       home: const AuthGate(),
       routes: {
-        '/login': (_) => const LoginPage(),
-        '/signup': (_) => const SignupPage(),
-  '/home': (_) => const HomePage(),
+        '/login': (_) => const LoginScreen(),
+        '/signup': (_) => const SignupScreen(),
+        '/home': (_) => const HomeScreen(),
       },
     );
   }
@@ -55,9 +55,9 @@ class AuthGate extends StatelessWidget {
         }
 
         if (snapshot.hasData && snapshot.data != null) {
-          return const HomePage();
+          return const HomeScreen();
         } else {
-          return const LoginPage();
+          return const LoginScreen();
         }
       },
     );
